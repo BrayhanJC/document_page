@@ -41,6 +41,7 @@ Web pages
         'document_page_view.xml',
         'security/document_page_security.xml',
         'security/ir.model.access.csv',
+        'document_page_sequence.xml',
     ],
     'demo': [
         'document_page_demo.xml'

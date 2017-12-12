@@ -98,6 +98,8 @@ class document_page(models.Model):
         readonly=True
     )
 
+    number_sequence= fields.Integer('Secuencia', required=True, readonly=True)
+
     def _get_page_index(self, page, link=True):
         index = []
         for subpage in page.child_ids:
@@ -144,6 +146,9 @@ class document_page(models.Model):
     @api.model
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
+        if not vals.get('number_sequence'):
+            vals['number_sequence'] = self.env['ir.sequence'].get('document.page')
+        #return super(doctor_attentions, self).create(cr, uid, vals, context=context)
         page_id = super(document_page, self).create(vals)
         content = vals.get('content')
         if content:
